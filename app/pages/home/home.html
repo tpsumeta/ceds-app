@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+     <ion-searchbar (ionBlur)="getItems($event)" 
+     autocomplete="true" 
+     placeholder="key serial" ></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+ 
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    <h2>{{ item.serial }} ({{item.type_name}})</h2>
+    <p>{{ item.first_name_tha }} {{ item.last_name_tha }} ({{item.name_department}})</p>
+  </ion-item>
+</ion-list>
+</ion-content>
