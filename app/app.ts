@@ -3,6 +3,7 @@ import { Platform, ionicBootstrap} from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 import { TabsPage } from './pages/tabs/tabs';
 import {MyDataService} from './providers/my-data-service/my-data-service';
+import {MySharedService} from './providers/my-shared-service/my-shared-service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class MyApp {
   public rootPage: any;
   public myData;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform,private service:MySharedService) {
     this.rootPage = TabsPage;
 
 
@@ -26,6 +27,13 @@ export class MyApp {
 
     });
   }
+
+
+  setData() {
+    this.service.setData({ attr: 'some value' });
+  }
+
+
 }
 
-ionicBootstrap(MyApp,[MyDataService]);
+ionicBootstrap(MyApp,[MyDataService,MySharedService]);

@@ -16,7 +16,7 @@
   ],
   "compileOnSave": true,
   "atom": {
-    "rewriteTsconfig": true
+    "rewriteTsconfig": false
   },
   "files": [
     "app/app.ts",

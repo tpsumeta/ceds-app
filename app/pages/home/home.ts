@@ -3,6 +3,8 @@ import { NavController} from 'ionic-angular';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
+import {MySharedService} from './../../providers/my-shared-service/my-shared-service';
+
 
 @Component({
   templateUrl: 'build/pages/home/home.html'
@@ -13,10 +15,20 @@ export class HomePage {
   items;
   api:string = 'http://ceds.dusit.ac.th/api/getReport?code_faculty=all&code_department=all&staff_type=all&code_person=&location_id=all&building_id=all&floor_id=all&room_id=all&n_id=all&durablegoods_id=all&type_id=all&brend_id=all&g_id=all&_=1474276776066';
   posts;
+  data = '';
 
-  constructor(public navCtrl: NavController,private http: Http,public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,private http: Http,public loadingCtrl: LoadingController,public service:MySharedService) {
 
        //this.initializeItems();
+       console.log('homeccc ');
+
+        this.service.dataChange.subscribe((data) => {
+          console.log('home ',this.data);
+         this.data = data;
+       });
+
+
+
 
 
   }
@@ -58,6 +70,8 @@ getItems(ev: any) {
 
 
 }
+
+
 
 
 }
