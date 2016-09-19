@@ -14,8 +14,18 @@
     "typings/global",
     "typings/global.d.ts"
   ],
-  "compileOnSave": false,
+  "compileOnSave": true,
   "atom": {
-    "rewriteTsconfig": false
-  }
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "app/app.ts",
+    "app/pages/about/about.ts",
+    "app/pages/contact/contact.ts",
+    "app/pages/home/home.ts",
+    "app/pages/tabs/tabs.ts",
+    "app/providers/my-data-service/my-data-service.ts",
+    "typings/globals/es6-shim/index.d.ts",
+    "typings/index.d.ts"
+  ]
 }

@@ -28,22 +28,8 @@
     "tslint-ionic-rules": "0.0.4",
     "run-sequence": "1.1.5"
   },
-  "cordovaPlugins": [
-    "cordova-plugin-whitelist",
-    "cordova-plugin-console",
-    "cordova-plugin-statusbar",
-    "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
-  ],
-  "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
-  ],
-  "name": "cute",
-  "description": "cute: An Ionic project"
+  "cordovaPlugins": [],
+  "cordovaPlatforms": [],
+  "name": "CEDS",
+  "description": "CEDS SDU"
 }

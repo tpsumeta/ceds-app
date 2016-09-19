@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import { LoadingController } from 'ionic-angular';
@@ -15,14 +15,15 @@ export class HomePage {
   posts;
 
   constructor(public navCtrl: NavController,private http: Http,public loadingCtrl: LoadingController) {
-      
-       this.initializeItems();
-    
+
+       //this.initializeItems();
+
+
   }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: "กรุณารอสักครู่...",
       duration: 3000
     });
     loader.present();
