@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the MyDataService provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class MyDataService {
   private data:any;
@@ -24,7 +19,6 @@ export class MyDataService {
 
   this.http.get(this.api).map(res => res.json()).subscribe(data => {
       this.data = data;
-      console.log(data);
     }, error => {
       console.log('Error with http.get: ', error);
     });
