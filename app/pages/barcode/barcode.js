@@ -10,12 +10,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var ionic_angular_2 = require('ionic-angular');
 var ionic_native_1 = require('ionic-native');
+var modal_1 = require('./../modal/modal');
 var BarcodePage = (function () {
-    function BarcodePage(_nav, _params) {
+    function BarcodePage(_nav, _params, modalCtrl) {
         this._nav = _nav;
         this._params = _params;
-        this.scanQR();
+        this.modalCtrl = modalCtrl;
     }
     BarcodePage.prototype.onPageLoaded = function () {
         this.eventId = this._params.get('eventId');
@@ -42,14 +44,17 @@ var BarcodePage = (function () {
         });
     };
     BarcodePage.prototype.goToResult = function (barcodeData) {
+        this.presentModal(barcodeData);
     };
-    BarcodePage.prototype.checkPass = function (data) {
+    BarcodePage.prototype.presentModal = function (barcode) {
+        var modal = this.modalCtrl.create(modal_1.ModalPage, barcode);
+        modal.present();
     };
     BarcodePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/barcode/barcode.html',
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, ionic_angular_2.ModalController])
     ], BarcodePage);
     return BarcodePage;
 }());

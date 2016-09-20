@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { BarcodeScanner } from 'ionic-native';
+import { ModalPage } from './../modal/modal';
 
 /*
   Generated class for the BarcodePage page.
@@ -19,9 +21,7 @@ export class BarcodePage {
   public eventTitle: string;
 
   constructor(private _nav: NavController,
-    private _params: NavParams) {
-
-    this.scanQR();
+    private _params: NavParams,public modalCtrl: ModalController) {
 
   }
 
@@ -58,10 +58,14 @@ export class BarcodePage {
     // this._nav.push(ScanResultPage, {
     //   scannedText: barcodeData.text
     // });
+    this.presentModal(barcodeData);
   }
 
-  private checkPass(data) {
-  }
+  presentModal(barcode) {
+     let modal = this.modalCtrl.create(ModalPage,barcode);
+     modal.present();
+   }
+   
 
 
 }
