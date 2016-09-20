@@ -10,24 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 var ionic_angular_2 = require('ionic-angular');
-var my_shared_service_1 = require('./../../providers/my-shared-service/my-shared-service');
+var my_data_service_1 = require('../../providers/my-data-service/my-data-service');
+var http_1 = require('@angular/http');
 var HomePage = (function () {
-    function HomePage(navCtrl, http, loadingCtrl, service) {
+    function HomePage(navCtrl, params, loadingCtrl, data, http) {
         var _this = this;
         this.navCtrl = navCtrl;
-        this.http = http;
+        this.params = params;
         this.loadingCtrl = loadingCtrl;
-        this.service = service;
-        this.searchQuery = '';
-        this.api = 'http://ceds.dusit.ac.th/api/getReport?code_faculty=all&code_department=all&staff_type=all&code_person=&location_id=all&building_id=all&floor_id=all&room_id=all&n_id=all&durablegoods_id=all&type_id=all&brend_id=all&g_id=all&_=1474276776066';
-        this.data = '';
-        console.log('homeccc ');
-        this.service.dataChange.subscribe(function (data) {
-            console.log('home ', _this.data);
-            _this.data = data;
+        this.data = data;
+        this.http = http;
+        var api = 'http://ceds.dusit.ac.th/api/getReport?code_faculty=all&code_department=all&staff_type=all&code_person=&location_id=all&building_id=all&floor_id=all&room_id=all&n_id=all&durablegoods_id=all&type_id=all&brend_id=all&g_id=all&_=1474276776066';
+        this.http.get(api).map(function (res) { return res.json(); }).subscribe(function (data) {
+            _this.items = data.data;
+            _this.posts = data.data;
+        }, function (error) {
+            console.log('Error with http.get: ', error);
         });
     }
     HomePage.prototype.presentLoading = function () {
@@ -37,30 +37,21 @@ var HomePage = (function () {
         });
         loader.present();
     };
-    HomePage.prototype.initializeItems = function () {
-        var _this = this;
-        this.http.get(this.api).map(function (res) { return res.json(); }).subscribe(function (data) {
-            _this.presentLoading();
-            _this.posts = data.data;
-        });
-    };
     HomePage.prototype.getItems = function (ev) {
         var val = ev.target.value;
         if (val && val.trim() != '') {
-            console.log('val', val.length);
+            this.presentLoading();
             this.items = this.posts;
             this.items = this.items.filter(function (item) {
-                console.log('item', item);
                 return (item.serial.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            this.presentLoading();
         }
     };
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html'
         }), 
-        __metadata('design:paramtypes', [ionic_angular_1.NavController, http_1.Http, ionic_angular_2.LoadingController, my_shared_service_1.MySharedService])
+        __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, ionic_angular_2.LoadingController, my_data_service_1.MyDataService, http_1.Http])
     ], HomePage);
     return HomePage;
 }());

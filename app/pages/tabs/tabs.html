@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Search" tabIcon="search"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Personal" tabIcon="contacts"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="Setting" tabIcon="settings"></ion-tab>
+  <ion-tab [root]="tab1Root" [rootParams]="mydata" tabTitle="Search" tabIcon="search"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="mydata" tabTitle="Personal" tabIcon="contacts"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="mydata" tabTitle="Setting" tabIcon="settings"></ion-tab>
 </ion-tabs>
