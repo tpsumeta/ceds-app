@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { BarcodeScanner } from 'ionic-native';
 import { ModalPage } from './../modal/modal';
+import {Http} from '@angular/http';
+import { ToastController } from 'ionic-angular';
 
 /*
   Generated class for the BarcodePage page.
@@ -19,10 +21,26 @@ export class BarcodePage {
   public loading: boolean;
   private eventId: number;
   public eventTitle: string;
+  public modal;
+  public api: string = 'http://ceds.dusit.ac.th/equipment/getBySerial';
 
   constructor(private _nav: NavController,
-    private _params: NavParams,public modalCtrl: ModalController) {
+    private _params: NavParams, public modalCtrl: ModalController,
+    private http: Http, public toastCtrl: ToastController) {
 
+
+
+
+  }
+
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'ไม่พบข้อมูล',
+      duration: 3000,
+      position: 'top',
+    });
+    toast.present();
   }
 
 
@@ -32,6 +50,11 @@ export class BarcodePage {
 
     this.buttonText = "Scan";
     this.loading = false;
+  }
+
+  public openModal() {
+
+    this.goToResult("46LBP1S");
   }
 
   public scanQR() {
@@ -47,7 +70,7 @@ export class BarcodePage {
       }
       console.log("Scanned successfully!");
       console.log(barcodeData);
-      this.goToResult(barcodeData);
+      this.goToResult(barcodeData.text);
     }, (err) => {
       console.log(err);
     });
@@ -55,17 +78,30 @@ export class BarcodePage {
 
 
   private goToResult(barcodeData) {
-    // this._nav.push(ScanResultPage, {
-    //   scannedText: barcodeData.text
-    // });
+
     this.presentModal(barcodeData);
   }
 
   presentModal(barcode) {
-     let modal = this.modalCtrl.create(ModalPage,barcode);
-     modal.present();
-   }
-   
+    this.http.get(this.api + '?serial=' + barcode).map(res => res.json()).subscribe(data => {
+      if (data[0]) {
+        this.modal = this.modalCtrl.create(ModalPage, { data: data[0] });
+        this.modal.present();
+        this.loading = false;
+      } else {
+        this.presentToast();
+      }
+    });
+
+
+
+
+  }
+
+
+
+
+
 
 
 }

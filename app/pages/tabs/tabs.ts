@@ -3,6 +3,7 @@ import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { BarcodePage } from '../barcode/barcode';
+import { SearchPage } from '../search/search';
 import {MyDataService} from '../../providers/my-data-service/my-data-service';
 
 
@@ -15,6 +16,7 @@ export class TabsPage {
   public tab2Root: any;
   public tab3Root: any;
   public tab4Root: any;
+  public tab5Root: any;
   public mydata: any;
 
   constructor(public data: MyDataService) {
@@ -26,5 +28,6 @@ export class TabsPage {
     this.tab2Root = AboutPage;
     this.tab3Root = ContactPage;
     this.tab4Root = BarcodePage;
+    this.tab5Root = SearchPage;
   }
 }
