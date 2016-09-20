@@ -16,45 +16,38 @@ var ionic_angular_2 = require('ionic-angular');
 var my_shared_service_1 = require('./../../providers/my-shared-service/my-shared-service');
 var HomePage = (function () {
     function HomePage(navCtrl, http, loadingCtrl, service) {
-        var _this = this;
         this.navCtrl = navCtrl;
         this.http = http;
         this.loadingCtrl = loadingCtrl;
         this.service = service;
         this.searchQuery = '';
         this.api = 'http://ceds.dusit.ac.th/api/getReport?code_faculty=all&code_department=all&staff_type=all&code_person=&location_id=all&building_id=all&floor_id=all&room_id=all&n_id=all&durablegoods_id=all&type_id=all&brend_id=all&g_id=all&_=1474276776066';
-        this.data = '';
-        console.log('homeccc ');
-        this.service.dataChange.subscribe(function (data) {
-            console.log('home ', _this.data);
-            _this.data = data;
-        });
+        this.initializeItems();
     }
     HomePage.prototype.presentLoading = function () {
         var loader = this.loadingCtrl.create({
             content: "กรุณารอสักครู่...",
-            duration: 3000
+            duration: 300
         });
         loader.present();
     };
     HomePage.prototype.initializeItems = function () {
         var _this = this;
         this.http.get(this.api).map(function (res) { return res.json(); }).subscribe(function (data) {
-            _this.presentLoading();
             _this.posts = data.data;
         });
     };
     HomePage.prototype.getItems = function (ev) {
         var val = ev.target.value;
-        if (val && val.trim() != '') {
-            console.log('val', val.length);
+        this.presentLoading();
+        if (val && val.trim() !== '') {
             this.items = this.posts;
             this.items = this.items.filter(function (item) {
                 console.log('item', item);
                 return (item.serial.toLowerCase().indexOf(val.toLowerCase()) > -1);
             });
-            this.presentLoading();
         }
+        ;
     };
     HomePage = __decorate([
         core_1.Component({
