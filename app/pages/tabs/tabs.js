@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var home_1 = require('../home/home');
 var about_1 = require('../about/about');
 var contact_1 = require('../contact/contact');
+var barcode_1 = require('../barcode/barcode');
 var my_data_service_1 = require('../../providers/my-data-service/my-data-service');
 var TabsPage = (function () {
     function TabsPage(data) {
@@ -19,6 +20,7 @@ var TabsPage = (function () {
         this.tab1Root = home_1.HomePage;
         this.tab2Root = about_1.AboutPage;
         this.tab3Root = contact_1.ContactPage;
+        this.tab4Root = barcode_1.BarcodePage;
     }
     TabsPage = __decorate([
         core_1.Component({

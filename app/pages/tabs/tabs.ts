@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
+import { BarcodePage } from '../barcode/barcode';
 import {MyDataService} from '../../providers/my-data-service/my-data-service';
 
 
@@ -13,6 +14,7 @@ export class TabsPage {
   public tab1Root: any;
   public tab2Root: any;
   public tab3Root: any;
+  public tab4Root: any;
   public mydata: any;
 
   constructor(public data: MyDataService) {
@@ -23,5 +25,6 @@ export class TabsPage {
     this.tab1Root = HomePage;
     this.tab2Root = AboutPage;
     this.tab3Root = ContactPage;
+    this.tab4Root = BarcodePage;
   }
 }

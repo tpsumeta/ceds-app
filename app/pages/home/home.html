@@ -1,17 +1,21 @@
 <ion-header>
-  <ion-navbar>
-     <ion-searchbar (ionBlur)="getItems($event)"
-     autocomplete="true"
-     placeholder="search by serial" ></ion-searchbar>
+  <ion-navbar secondary>
+    <ion-title>
+      ค้นหาคุรุภัณฑ์
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="home">
 
-<ion-list>
-  <ion-item *ngFor="let item of items">
-    <h2>{{ item.serial }} ({{item.type_name}})</h2>
-    <p>{{ item.first_name_tha }} {{ item.last_name_tha }} ({{item.name_department}})</p>
-  </ion-item>
-</ion-list>
+<ion-content padding class="home">
+  <ion-searchbar (ionBlur)="getItems($event)" autocomplete="true" placeholder="พิมพ์รหัสคุรุุภัณฑ์"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <h2>{{ item.serial }}
+        ({{item.type_name}})</h2>
+      <p>{{ item.first_name_tha }}
+        {{ item.last_name_tha }}
+        ({{item.name_department}})</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
