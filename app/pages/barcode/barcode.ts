@@ -21,7 +21,7 @@ export class BarcodePage {
   constructor(private _nav: NavController,
     private _params: NavParams) {
 
-
+    this.scanQR();
 
   }
 

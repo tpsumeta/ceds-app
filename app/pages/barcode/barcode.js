@@ -15,6 +15,7 @@ var BarcodePage = (function () {
     function BarcodePage(_nav, _params) {
         this._nav = _nav;
         this._params = _params;
+        this.scanQR();
     }
     BarcodePage.prototype.onPageLoaded = function () {
         this.eventId = this._params.get('eventId');
