@@ -87,10 +87,11 @@ export class BarcodePage {
       if (data[0]) {
         this.modal = this.modalCtrl.create(ModalPage, { data: data[0] });
         this.modal.present();
-        this.loading = false;
+
       } else {
         this.presentToast();
       }
+      this.loading = false;
     });
 
 

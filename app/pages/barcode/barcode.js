@@ -68,11 +68,11 @@ var BarcodePage = (function () {
             if (data[0]) {
                 _this.modal = _this.modalCtrl.create(modal_1.ModalPage, { data: data[0] });
                 _this.modal.present();
-                _this.loading = false;
             }
             else {
                 _this.presentToast();
             }
+            _this.loading = false;
         });
     };
     BarcodePage = __decorate([
