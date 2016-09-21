@@ -39,7 +39,7 @@ var BarcodePage = (function () {
         this.loading = false;
     };
     BarcodePage.prototype.openModal = function () {
-        this.goToResult("46LBP1S");
+        this.presentModal("SDUARIT007544");
     };
     BarcodePage.prototype.scanQR = function () {
         var _this = this;
@@ -54,18 +54,17 @@ var BarcodePage = (function () {
             }
             console.log("Scanned successfully!");
             console.log(barcodeData);
-            _this.goToResult(barcodeData.text);
+            _this.presentModal(barcodeData.text);
+            _this.buttonText = "สแกน";
+            _this.loading = false;
         }, function (err) {
             console.log(err);
         });
     };
-    BarcodePage.prototype.goToResult = function (barcodeData) {
-        this.presentModal(barcodeData);
-    };
     BarcodePage.prototype.presentModal = function (barcode) {
         var _this = this;
         console.log('barcode ', barcode);
-        this.http.get(this.api + '?serial=' + barcode).map(function (res) { return res.json(); }).subscribe(function (data) {
+        this.http.get(this.api + '?barcode=' + barcode).map(function (res) { return res.json(); }).subscribe(function (data) {
             if (data) {
                 console.log('data', data);
                 _this.modal = _this.modalCtrl.create(modal_1.ModalPage, { data: data });

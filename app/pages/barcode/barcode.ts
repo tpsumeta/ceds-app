@@ -54,7 +54,7 @@ export class BarcodePage {
 
   public openModal() {
 
-    this.goToResult("46LBP1S");
+    this.presentModal("SDUARIT007544");
   }
 
   public scanQR() {
@@ -70,21 +70,18 @@ export class BarcodePage {
       }
       console.log("Scanned successfully!");
       console.log(barcodeData);
-      this.goToResult(barcodeData.text);
+      this.presentModal(barcodeData.text);
+      this.buttonText = "สแกน";
+      this.loading = false;
     }, (err) => {
       console.log(err);
     });
   }
 
 
-  private goToResult(barcodeData) {
-
-    this.presentModal(barcodeData);
-  }
-
   presentModal(barcode) {
     console.log('barcode ',barcode);
-    this.http.get(this.api + '?serial=' + barcode).map(res => res.json()).subscribe(data => {
+    this.http.get(this.api + '?barcode=' + barcode).map(res => res.json()).subscribe(data => {
       if (data) {
         console.log('data',data);
         this.modal = this.modalCtrl.create(ModalPage, { data: data });
