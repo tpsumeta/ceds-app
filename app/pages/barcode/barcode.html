@@ -12,15 +12,18 @@
 
 </ion-header>
 
-<ion-content padding>
-  <div class="row">
+<ion-content padding >
+  <ion-card (click)="openModal()" class="scan-barcode">
+  <ion-card-header>
+  <ion-icon name="barcode" class="larger"></ion-icon>
+  </ion-card-header>
+  <ion-card-content>
    <div class="col">
-     <h2>Scan your Barcode หม่องนี่</h2>
+     <h3>{{eventTitle}} {{buttonText}}</h3>
    </div>
-   <div class="col">
-     <h3>{{eventTitle}}</h3>
-   </div>
- </div>
 <!-- <button class="button button-block Scan-button" (click)="scanQR()" [disabled]="loading">{{buttonText}}</button> -->
-<button class="button button-block Scan-button" (click)="scanQR()" [disabled]="loading">{{buttonText}}</button>
+<!-- <button class="button button-block Scan-button" (click)="openModal()" [disabled]="loading">{{buttonText}}</button> -->
+</ion-card-content>
+</ion-card>
+
 </ion-content>

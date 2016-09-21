@@ -25,25 +25,37 @@
   คุรุภัณฑ์
   </ion-card-header>
   <ion-card-content>
-    <p>รหัส : {{equipment.serial}}</p>
-    <p>ประเภท : {{equipment.durablegoods_id}}</p>
-    <p>ยี่ห้อ : {{equipment.brend_id}}</p>
+    <p>รหัส Seial : {{equipment.serial}}</p>
+    <p>รหัสครุภัณฑ์ : {{equipment.durable_goods}}</p>
+    <!-- <p>ประเภท : {{equipment.durablegoods_id}}</p> -->
+    <!-- <p>ยี่ห้อ : {{equipment.brend_id}}</p> -->
   </ion-card-content>
 </ion-card>
-<ion-card>
 
+<ion-card>
 <ion-card-header>
 ผู้ถือครอง
 </ion-card-header>
-
 <ion-card-content>
   <p>รหัส : {{equipment.CODE_PERSON}}</p>
-  <p>ชื่อ : {{equipment.CODE_PERSON}}</p>
-  <p>หน่วยงาน : {{equipment.CODE_PERSON}}</p>
-
+  <p>ชื่อ : {{equipment.hr.name_prename_tha}}{{equipment.hr.first_name_tha}} {{equipment.hr.last_name_tha}}</p>
+  <p>หน่วยงาน : {{equipment.hr.name_department}}</p>
+  <p>สังกัด : {{equipment.hr.name_faculty}}</p>
+  <p>ประเภท : {{equipment.hr.staff_type_name}}</p>
+  <p>สถานะ : {{equipment.hr.name_status}}</p>
 </ion-card-content>
-
 </ion-card>
+
+<ion-card>
+<ion-card-header>
+อัฟเดตข้อมูล
+</ion-card-header>
+<ion-card-content>
+  <p>แก้ไขล่าสุด : {{equipment.last_modify_date}}</p>
+  <p>ผู้แก้ไข : {{equipment.last_modify_by}}</p>
+</ion-card-content>
+</ion-card>
+
   <ion-list>
 
   </ion-list>

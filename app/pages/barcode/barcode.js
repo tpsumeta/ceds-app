@@ -35,7 +35,7 @@ var BarcodePage = (function () {
     BarcodePage.prototype.onPageLoaded = function () {
         this.eventId = this._params.get('eventId');
         this.eventTitle = this._params.get('eventTitle');
-        this.buttonText = "Scan";
+        this.buttonText = "สแกน";
         this.loading = false;
     };
     BarcodePage.prototype.openModal = function () {
@@ -43,12 +43,12 @@ var BarcodePage = (function () {
     };
     BarcodePage.prototype.scanQR = function () {
         var _this = this;
-        this.buttonText = "Loading..";
+        this.buttonText = "กำลังโหลดข้อมูล...";
         this.loading = true;
         ionic_native_1.BarcodeScanner.scan().then(function (barcodeData) {
             if (barcodeData.cancelled) {
                 console.log("User cancelled the action!");
-                _this.buttonText = "Scan";
+                _this.buttonText = "สแกน";
                 _this.loading = false;
                 return false;
             }
@@ -64,16 +64,21 @@ var BarcodePage = (function () {
     };
     BarcodePage.prototype.presentModal = function (barcode) {
         var _this = this;
+        console.log('barcode ', barcode);
         this.http.get(this.api + '?serial=' + barcode).map(function (res) { return res.json(); }).subscribe(function (data) {
-            if (data[0]) {
-                _this.modal = _this.modalCtrl.create(modal_1.ModalPage, { data: data[0] });
+            if (data) {
+                console.log('data', data);
+                _this.modal = _this.modalCtrl.create(modal_1.ModalPage, { data: data });
                 _this.modal.present();
             }
             else {
+                _this.loading = false;
                 _this.presentToast();
             }
-            _this.loading = false;
-        });
+        }),
+            function (err) { return function () {
+                console.error('Can not connect Server');
+            }; };
     };
     BarcodePage = __decorate([
         core_1.Component({

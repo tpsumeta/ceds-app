@@ -48,7 +48,7 @@ export class BarcodePage {
     this.eventId = this._params.get('eventId');
     this.eventTitle = this._params.get('eventTitle');
 
-    this.buttonText = "Scan";
+    this.buttonText = "สแกน";
     this.loading = false;
   }
 
@@ -58,13 +58,13 @@ export class BarcodePage {
   }
 
   public scanQR() {
-    this.buttonText = "Loading..";
+    this.buttonText = "กำลังโหลดข้อมูล...";
     this.loading = true;
 
     BarcodeScanner.scan().then((barcodeData) => {
       if (barcodeData.cancelled) {
         console.log("User cancelled the action!");
-        this.buttonText = "Scan";
+        this.buttonText = "สแกน";
         this.loading = false;
         return false;
       }
@@ -83,16 +83,21 @@ export class BarcodePage {
   }
 
   presentModal(barcode) {
+    console.log('barcode ',barcode);
     this.http.get(this.api + '?serial=' + barcode).map(res => res.json()).subscribe(data => {
-      if (data[0]) {
-        this.modal = this.modalCtrl.create(ModalPage, { data: data[0] });
+      if (data) {
+        console.log('data',data);
+        this.modal = this.modalCtrl.create(ModalPage, { data: data });
         this.modal.present();
 
       } else {
+        this.loading = false;
         this.presentToast();
       }
-      this.loading = false;
-    });
+    }),
+    err=> function(){
+        console.error('Can not connect Server');
+    }
 
 
 
