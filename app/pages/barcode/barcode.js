@@ -24,10 +24,10 @@ var BarcodePage = (function () {
         this.toastCtrl = toastCtrl;
         this.api = 'http://ceds.dusit.ac.th/equipment/getBySerial';
     }
-    BarcodePage.prototype.presentToast = function () {
+    BarcodePage.prototype.presentToast = function (massage) {
         var toast = this.toastCtrl.create({
-            message: 'ไม่พบข้อมูล',
-            duration: 3000,
+            message: massage,
+            duration: 5000,
             position: 'top',
         });
         toast.present();
@@ -72,11 +72,12 @@ var BarcodePage = (function () {
             }
             else {
                 _this.loading = false;
-                _this.presentToast();
+                _this.presentToast('ไม่พบข้อมูล');
             }
         }),
             function (err) { return function () {
                 console.error('Can not connect Server');
+                this.presentToast('ไม่พบสามารถติดต่อ Server ได้');
             }; };
     };
     BarcodePage = __decorate([

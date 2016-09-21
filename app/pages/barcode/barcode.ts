@@ -34,10 +34,10 @@ export class BarcodePage {
   }
 
 
-  presentToast() {
+  presentToast(massage) {
     let toast = this.toastCtrl.create({
-      message: 'ไม่พบข้อมูล',
-      duration: 3000,
+      message: massage,
+      duration: 5000,
       position: 'top',
     });
     toast.present();
@@ -89,11 +89,12 @@ export class BarcodePage {
 
       } else {
         this.loading = false;
-        this.presentToast();
+        this.presentToast('ไม่พบข้อมูล');
       }
     }),
     err=> function(){
         console.error('Can not connect Server');
+        this.presentToast('ไม่พบสามารถติดต่อ Server ได้');
     }
 
 

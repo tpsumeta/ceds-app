@@ -8,7 +8,7 @@
 
 
 <ion-content padding class="home">
-  <ion-searchbar (ionBlur)="getItems($event)" autocomplete="true" placeholder="พิมพ์รหัสคุรุภัณฑ์"></ion-searchbar>
+  <ion-searchbar (ionBlur)="getItems($event)" autocomplete="true" placeholder="พิมพ์รหัสครุภัณฑ์"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of items">
       <h2>{{ item.serial }}
