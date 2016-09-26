@@ -92,15 +92,9 @@ export class BarcodePage {
         this.loading = false;
         this.presentToast('ไม่พบข้อมูล');
       }
-    }),
-    err=> function(){
-        console.error('Can not connect Server');
-        this.presentToast('ไม่พบสามารถติดต่อ Server ได้');
-    }
-
-
-
-
+    }, err => this.presentToast('ไม่ใช่ข้อมูลครุภัณฑ์')
+  );
+    this.buttonText = "สแกน";
   }
 
 
