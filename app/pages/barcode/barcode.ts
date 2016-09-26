@@ -62,6 +62,7 @@ export class BarcodePage {
     this.loading = true;
 
     BarcodeScanner.scan().then((barcodeData) => {
+      // if event cancled
       if (barcodeData.cancelled) {
         console.log("User cancelled the action!");
         this.buttonText = "สแกน";
@@ -70,7 +71,12 @@ export class BarcodePage {
       }
       console.log("Scanned successfully!");
       console.log(barcodeData);
-      this.presentModal(barcodeData.text);
+      // check data is not null
+      if(barcodeData){
+        this.presentModal(barcodeData.text);
+      }else{
+        this.presentToast('ไม่ใช่ข้อมูลครุภัณฑ์');
+      }
       this.buttonText = "สแกน";
       this.loading = false;
     }, (err) => {

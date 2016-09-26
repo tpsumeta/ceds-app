@@ -54,7 +54,12 @@ var BarcodePage = (function () {
             }
             console.log("Scanned successfully!");
             console.log(barcodeData);
-            _this.presentModal(barcodeData.text);
+            if (barcodeData) {
+                _this.presentModal(barcodeData.text);
+            }
+            else {
+                _this.presentToast('ไม่ใช่ข้อมูลครุภัณฑ์');
+            }
             _this.buttonText = "สแกน";
             _this.loading = false;
         }, function (err) {
