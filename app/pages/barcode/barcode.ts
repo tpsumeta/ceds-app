@@ -4,6 +4,7 @@ import { ModalController } from 'ionic-angular';
 import { BarcodeScanner } from 'ionic-native';
 import { ModalPage } from './../modal/modal';
 import {Http} from '@angular/http';
+import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
 
 /*
@@ -53,7 +54,7 @@ export class BarcodePage {
   }
 
   public openModal() {
-
+    console.log('openModal');
     this.presentModal("SDUARIT007544");
   }
 
@@ -70,15 +71,9 @@ export class BarcodePage {
         return false;
       }
       console.log("Scanned successfully!");
-      console.log(barcodeData);
-      // check data is not null
-      if(barcodeData){
         this.presentModal(barcodeData.text);
-      }else{
-        this.presentToast('ไม่ใช่ข้อมูลครุภัณฑ์');
-      }
-      this.buttonText = "สแกน";
-      this.loading = false;
+        //this.buttonText = "สแกน";
+        this.loading = false;
     }, (err) => {
       console.log(err);
     });
