@@ -28,7 +28,7 @@ docker run --name ceds-ionic -it --rm -v /home/docker/developer/ceds-ionic:/data
 
 ### RUN IONIC
 ```
-docker run -it -v /home/docker/developer/ceds-ionic:/tmp  beevelop/ionic bash
+docker run --name ceds -it -v /home/docker/developer/ceds-ionic:/tmp  beevelop/ionic bash
 ```
 
 #### OR IONIC
